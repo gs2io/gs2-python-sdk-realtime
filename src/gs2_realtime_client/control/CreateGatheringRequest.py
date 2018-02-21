@@ -32,12 +32,12 @@ class CreateGatheringRequest(Gs2BasicRequest):
         super(CreateGatheringRequest, self).__init__(params)
         if params is None:
             self.__gathering_pool_name = None
-            self.__user_ids = None
             self.__name = None
+            self.__user_ids = None
         else:
             self.set_gathering_pool_name(params['gatheringPoolName'] if 'gatheringPoolName' in params.keys() else None)
-            self.set_user_ids(params['userIds'] if 'userIds' in params.keys() else None)
             self.set_name(params['name'] if 'name' in params.keys() else None)
+            self.set_user_ids(params['userIds'] if 'userIds' in params.keys() else None)
 
     def get_gathering_pool_name(self):
         """
@@ -66,33 +66,6 @@ class CreateGatheringRequest(Gs2BasicRequest):
         self.set_gathering_pool_name(gathering_pool_name)
         return self
 
-    def get_user_ids(self):
-        """
-        カンマ区切りのギャザリングへの参加を許可するユーザIDリストを取得
-        :return: カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
-        :rtype: unicode
-        """
-        return self.__user_ids
-
-    def set_user_ids(self, user_ids):
-        """
-        カンマ区切りのギャザリングへの参加を許可するユーザIDリストを設定
-        :param user_ids: カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
-        :type user_ids: unicode
-        """
-        self.__user_ids = user_ids
-
-    def with_user_ids(self, user_ids):
-        """
-        カンマ区切りのギャザリングへの参加を許可するユーザIDリストを設定
-        :param user_ids: カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
-        :type user_ids: unicode
-        :return: this
-        :rtype: CreateGatheringRequest
-        """
-        self.set_user_ids(user_ids)
-        return self
-
     def get_name(self):
         """
         ギャザリング名を取得
@@ -118,4 +91,31 @@ class CreateGatheringRequest(Gs2BasicRequest):
         :rtype: CreateGatheringRequest
         """
         self.set_name(name)
+        return self
+
+    def get_user_ids(self):
+        """
+        カンマ区切りのギャザリングへの参加を許可するユーザIDリストを取得
+        :return: カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
+        :rtype: unicode
+        """
+        return self.__user_ids
+
+    def set_user_ids(self, user_ids):
+        """
+        カンマ区切りのギャザリングへの参加を許可するユーザIDリストを設定
+        :param user_ids: カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
+        :type user_ids: unicode
+        """
+        self.__user_ids = user_ids
+
+    def with_user_ids(self, user_ids):
+        """
+        カンマ区切りのギャザリングへの参加を許可するユーザIDリストを設定
+        :param user_ids: カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
+        :type user_ids: unicode
+        :return: this
+        :rtype: CreateGatheringRequest
+        """
+        self.set_user_ids(user_ids)
         return self
