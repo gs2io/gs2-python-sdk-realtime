@@ -14,6 +14,7 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
+
 class Gathering(object):
 
     def __init__(self, params=None):
@@ -22,7 +23,6 @@ class Gathering(object):
             self.__gathering_pool_id = None
             self.__owner_id = None
             self.__name = None
-            self.__host_id = None
             self.__ip_address = None
             self.__port = None
             self.__secret = None
@@ -34,7 +34,6 @@ class Gathering(object):
             self.set_gathering_pool_id(params['gatheringPoolId'] if 'gatheringPoolId' in params.keys() else None)
             self.set_owner_id(params['ownerId'] if 'ownerId' in params.keys() else None)
             self.set_name(params['name'] if 'name' in params.keys() else None)
-            self.set_host_id(params['hostId'] if 'hostId' in params.keys() else None)
             self.set_ip_address(params['ipAddress'] if 'ipAddress' in params.keys() else None)
             self.set_port(params['port'] if 'port' in params.keys() else None)
             self.set_secret(params['secret'] if 'secret' in params.keys() else None)
@@ -42,35 +41,34 @@ class Gathering(object):
             self.set_create_at(params['createAt'] if 'createAt' in params.keys() else None)
             self.set_update_at(params['updateAt'] if 'updateAt' in params.keys() else None)
 
-
     def get_gathering_id(self):
         """
-        購読GRNを取得
-        :return: 購読GRN
+        ギャザリングIDを取得
+        :return: ギャザリングID
         :rtype: unicode
         """
         return self.__gathering_id
 
     def set_gathering_id(self, gathering_id):
         """
-        購読GRNを設定
-        :param gathering_id: 購読GRN
+        ギャザリングIDを設定
+        :param gathering_id: ギャザリングID
         :type gathering_id: unicode
         """
         self.__gathering_id = gathering_id
 
     def get_gathering_pool_id(self):
         """
-        通知GRNを取得
-        :return: 通知GRN
+        ギャザリングプールGRNを取得
+        :return: ギャザリングプールGRN
         :rtype: unicode
         """
         return self.__gathering_pool_id
 
     def set_gathering_pool_id(self, gathering_pool_id):
         """
-        通知GRNを設定
-        :param gathering_pool_id: 通知GRN
+        ギャザリングプールGRNを設定
+        :param gathering_pool_id: ギャザリングプールGRN
         :type gathering_pool_id: unicode
         """
         self.__gathering_pool_id = gathering_pool_id
@@ -106,22 +104,6 @@ class Gathering(object):
         :type name: unicode
         """
         self.__name = name
-
-    def get_host_id(self):
-        """
-        ホストGRNを取得
-        :return: ホストGRN
-        :rtype: unicode
-        """
-        return self.__host_id
-
-    def set_host_id(self, host_id):
-        """
-        ホストGRNを設定
-        :param host_id: ホストGRN
-        :type host_id: unicode
-        """
-        self.__host_id = host_id
 
     def get_ip_address(self):
         """
@@ -220,12 +202,11 @@ class Gathering(object):
         self.__update_at = update_at
 
     def to_dict(self):
-        return { 
+        return {
             "gatheringId": self.__gathering_id,
             "gatheringPoolId": self.__gathering_pool_id,
             "ownerId": self.__owner_id,
             "name": self.__name,
-            "hostId": self.__host_id,
             "ipAddress": self.__ip_address,
             "port": self.__port,
             "secret": self.__secret,

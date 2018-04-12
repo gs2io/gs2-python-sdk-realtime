@@ -32,9 +32,11 @@ class GetGatheringRequest(Gs2BasicRequest):
         super(GetGatheringRequest, self).__init__(params)
         if params is None:
             self.__gathering_pool_name = None
-            self.__gathering_name = None
         else:
             self.set_gathering_pool_name(params['gatheringPoolName'] if 'gatheringPoolName' in params.keys() else None)
+        if params is None:
+            self.__gathering_name = None
+        else:
             self.set_gathering_name(params['gatheringName'] if 'gatheringName' in params.keys() else None)
 
     def get_gathering_pool_name(self):
@@ -51,6 +53,8 @@ class GetGatheringRequest(Gs2BasicRequest):
         :param gathering_pool_name: ギャザリングプールの名前を指定します。
         :type gathering_pool_name: unicode
         """
+        if not isinstance(gathering_pool_name, unicode):
+            raise TypeError(type(gathering_pool_name))
         self.__gathering_pool_name = gathering_pool_name
 
     def with_gathering_pool_name(self, gathering_pool_name):
@@ -78,6 +82,8 @@ class GetGatheringRequest(Gs2BasicRequest):
         :param gathering_name: ギャザリングの名前を指定します。
         :type gathering_name: unicode
         """
+        if not isinstance(gathering_name, unicode):
+            raise TypeError(type(gathering_name))
         self.__gathering_name = gathering_name
 
     def with_gathering_name(self, gathering_name):

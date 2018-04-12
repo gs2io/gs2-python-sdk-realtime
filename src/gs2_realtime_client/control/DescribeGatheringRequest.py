@@ -32,11 +32,15 @@ class DescribeGatheringRequest(Gs2BasicRequest):
         super(DescribeGatheringRequest, self).__init__(params)
         if params is None:
             self.__gathering_pool_name = None
-            self.__page_token = None
-            self.__limit = None
         else:
             self.set_gathering_pool_name(params['gatheringPoolName'] if 'gatheringPoolName' in params.keys() else None)
+        if params is None:
+            self.__page_token = None
+        else:
             self.set_page_token(params['pageToken'] if 'pageToken' in params.keys() else None)
+        if params is None:
+            self.__limit = None
+        else:
             self.set_limit(params['limit'] if 'limit' in params.keys() else None)
 
     def get_gathering_pool_name(self):
@@ -53,6 +57,8 @@ class DescribeGatheringRequest(Gs2BasicRequest):
         :param gathering_pool_name: ギャザリングプールの名前を指定します。
         :type gathering_pool_name: unicode
         """
+        if not isinstance(gathering_pool_name, unicode):
+            raise TypeError(type(gathering_pool_name))
         self.__gathering_pool_name = gathering_pool_name
 
     def with_gathering_pool_name(self, gathering_pool_name):
@@ -80,6 +86,8 @@ class DescribeGatheringRequest(Gs2BasicRequest):
         :param page_token: データの取得を開始する位置を指定するトークン
         :type page_token: unicode
         """
+        if not isinstance(page_token, unicode):
+            raise TypeError(type(page_token))
         self.__page_token = page_token
 
     def with_page_token(self, page_token):
@@ -107,6 +115,8 @@ class DescribeGatheringRequest(Gs2BasicRequest):
         :param limit: データの取得件数
         :type limit: int
         """
+        if not isinstance(limit, int):
+            raise TypeError(type(limit))
         self.__limit = limit
 
     def with_limit(self, limit):

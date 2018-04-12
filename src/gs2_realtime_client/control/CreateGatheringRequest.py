@@ -32,11 +32,15 @@ class CreateGatheringRequest(Gs2BasicRequest):
         super(CreateGatheringRequest, self).__init__(params)
         if params is None:
             self.__gathering_pool_name = None
-            self.__name = None
-            self.__user_ids = None
         else:
             self.set_gathering_pool_name(params['gatheringPoolName'] if 'gatheringPoolName' in params.keys() else None)
+        if params is None:
+            self.__name = None
+        else:
             self.set_name(params['name'] if 'name' in params.keys() else None)
+        if params is None:
+            self.__user_ids = None
+        else:
             self.set_user_ids(params['userIds'] if 'userIds' in params.keys() else None)
 
     def get_gathering_pool_name(self):
@@ -53,6 +57,8 @@ class CreateGatheringRequest(Gs2BasicRequest):
         :param gathering_pool_name: ギャザリングプールの名前を指定します。
         :type gathering_pool_name: unicode
         """
+        if not isinstance(gathering_pool_name, unicode):
+            raise TypeError(type(gathering_pool_name))
         self.__gathering_pool_name = gathering_pool_name
 
     def with_gathering_pool_name(self, gathering_pool_name):
@@ -80,6 +86,8 @@ class CreateGatheringRequest(Gs2BasicRequest):
         :param name: ギャザリング名
         :type name: unicode
         """
+        if not isinstance(name, unicode):
+            raise TypeError(type(name))
         self.__name = name
 
     def with_name(self, name):
@@ -107,6 +115,8 @@ class CreateGatheringRequest(Gs2BasicRequest):
         :param user_ids: カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
         :type user_ids: unicode
         """
+        if not isinstance(user_ids, unicode):
+            raise TypeError(type(user_ids))
         self.__user_ids = user_ids
 
     def with_user_ids(self, user_ids):

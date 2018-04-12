@@ -25,22 +25,19 @@ class DescribeGatheringResult(object):
         :type response: レスポンスボディ
         :type response: dict
         """
-        
         self.__items = list(
             map(
                 lambda data:
-                Gathering(data)
-                ,
+                Gathering(data),
                 response['items']
             )
         )
-        
         self.__next_page_token = unicode(response['nextPageToken']) if 'nextPageToken' in response.keys() and response['nextPageToken'] is not None else None
 
     def get_items(self):
         """
-        購読を取得
-        :return: 購読
+        ギャザリングを取得
+        :return: ギャザリング
         :rtype: list[Gathering]
         """
         return self.__items
@@ -59,9 +56,7 @@ class DescribeGatheringResult(object):
         :return: 辞書配列
         :rtype: dict
         """
-        return { 
+        return {
             'items': map(lambda item: item.to_dict(), self.__items),
-        
             'nextPageToken': self.__next_page_token,
-        
         }

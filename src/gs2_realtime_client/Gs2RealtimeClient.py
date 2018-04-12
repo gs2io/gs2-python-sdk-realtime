@@ -14,8 +14,6 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
-import json
-
 from gs2_core_client.Gs2Constant import Gs2Constant
 from gs2_core_client.AbstractGs2Client import AbstractGs2Client
 
@@ -34,40 +32,6 @@ class Gs2RealtimeClient(AbstractGs2Client):
         """
         super(Gs2RealtimeClient, self).__init__(credential, region)
 
-
-    def create_gathering(self, request):
-        """
-        ギャザリングを作成します<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_realtime_client.control.CreateGatheringRequest.CreateGatheringRequest
-        :return: 結果
-        :rtype: gs2_realtime_client.control.CreateGatheringResult.CreateGatheringResult
-        """
-        body = { 
-            "name": request.get_name(),
-            "userIds": request.get_user_ids(),
-        }
-
-        headers = { 
-        }
-        if request.get_request_id() is not None:
-            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
-        from gs2_realtime_client.control.CreateGatheringRequest import CreateGatheringRequest
-
-        from gs2_realtime_client.control.CreateGatheringResult import CreateGatheringResult
-        return CreateGatheringResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "/gathering",
-            service=self.ENDPOINT,
-            module=CreateGatheringRequest.Constant.MODULE,
-            function=CreateGatheringRequest.Constant.FUNCTION,
-            body=body,
-            headers=headers
-        ))
-
-
-
-
     def create_gathering_pool(self, request):
         """
         ギャザリングプールを新規作成します<br>
@@ -79,55 +43,24 @@ class Gs2RealtimeClient(AbstractGs2Client):
         """
         body = { 
             "name": request.get_name(),
-            "description": request.get_description(),
         }
 
+        if request.get_description() is not None:
+            body["description"] = request.get_description()
         headers = { 
         }
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_realtime_client.control.CreateGatheringPoolRequest import CreateGatheringPoolRequest
-
         from gs2_realtime_client.control.CreateGatheringPoolResult import CreateGatheringPoolResult
         return CreateGatheringPoolResult(self._do_post_request(
             url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool",
             service=self.ENDPOINT,
-            module=CreateGatheringPoolRequest.Constant.MODULE,
-            function=CreateGatheringPoolRequest.Constant.FUNCTION,
+            component=CreateGatheringPoolRequest.Constant.MODULE,
+            target_function=CreateGatheringPoolRequest.Constant.FUNCTION,
             body=body,
             headers=headers
         ))
-
-
-
-    def delete_gathering(self, request):
-        """
-        ギャザリングを削除します<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_realtime_client.control.DeleteGatheringRequest.DeleteGatheringRequest
-
-        """
-
-        query_strings = {
-
-        }
-        headers = { 
-        }
-        if request.get_request_id() is not None:
-            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
-        from gs2_realtime_client.control.DeleteGatheringRequest import DeleteGatheringRequest
-
-        self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "/gathering/" + str(("null" if request.get_gathering_name() is None or request.get_gathering_name() == "" else request.get_gathering_name())) + "",
-            service=self.ENDPOINT,
-            module=DeleteGatheringRequest.Constant.MODULE,
-            function=DeleteGatheringRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        )
-
-
 
     def delete_gathering_pool(self, request):
         """
@@ -135,80 +68,33 @@ class Gs2RealtimeClient(AbstractGs2Client):
         <br>
         :param request: リクエストパラメータ
         :type request: gs2_realtime_client.control.DeleteGatheringPoolRequest.DeleteGatheringPoolRequest
-
         """
-
-        query_strings = {
-
-        }
+        query_strings = {}
         headers = { 
         }
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_realtime_client.control.DeleteGatheringPoolRequest import DeleteGatheringPoolRequest
-
         self._do_delete_request(
             url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "",
             service=self.ENDPOINT,
-            module=DeleteGatheringPoolRequest.Constant.MODULE,
-            function=DeleteGatheringPoolRequest.Constant.FUNCTION,
+            component=DeleteGatheringPoolRequest.Constant.MODULE,
+            target_function=DeleteGatheringPoolRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         )
 
-
-
-    def describe_gathering(self, request):
-        """
-        ギャザリングの一覧を取得します<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_realtime_client.control.DescribeGatheringRequest.DescribeGatheringRequest
-        :return: 結果
-        :rtype: gs2_realtime_client.control.DescribeGatheringResult.DescribeGatheringResult
-        """
-
-        query_strings = {
-
-            'pageToken': request.get_page_token(),
-
-            'limit': request.get_limit(),
-
-        }
-        headers = { 
-        }
-        if request.get_request_id() is not None:
-            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
-        from gs2_realtime_client.control.DescribeGatheringRequest import DescribeGatheringRequest
-
-        from gs2_realtime_client.control.DescribeGatheringResult import DescribeGatheringResult
-        return DescribeGatheringResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "/gathering",
-            service=self.ENDPOINT,
-            module=DescribeGatheringRequest.Constant.MODULE,
-            function=DescribeGatheringRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        ))
-
-
-
     def describe_gathering_pool(self, request):
         """
         ギャザリングプールの一覧を取得します<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_realtime_client.control.DescribeGatheringPoolRequest.DescribeGatheringPoolRequest
         :return: 結果
         :rtype: gs2_realtime_client.control.DescribeGatheringPoolResult.DescribeGatheringPoolResult
         """
-
         query_strings = {
-
             'pageToken': request.get_page_token(),
-
             'limit': request.get_limit(),
-
         }
         headers = { 
         }
@@ -220,57 +106,21 @@ class Gs2RealtimeClient(AbstractGs2Client):
         return DescribeGatheringPoolResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool",
             service=self.ENDPOINT,
-            module=DescribeGatheringPoolRequest.Constant.MODULE,
-            function=DescribeGatheringPoolRequest.Constant.FUNCTION,
+            component=DescribeGatheringPoolRequest.Constant.MODULE,
+            target_function=DescribeGatheringPoolRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
-
-
-
-    def get_gathering(self, request):
-        """
-        ギャザリングを取得します<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_realtime_client.control.GetGatheringRequest.GetGatheringRequest
-        :return: 結果
-        :rtype: gs2_realtime_client.control.GetGatheringResult.GetGatheringResult
-        """
-
-        query_strings = {
-
-        }
-        headers = { 
-        }
-        if request.get_request_id() is not None:
-            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
-        from gs2_realtime_client.control.GetGatheringRequest import GetGatheringRequest
-
-        from gs2_realtime_client.control.GetGatheringResult import GetGatheringResult
-        return GetGatheringResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "/gathering/" + str(("null" if request.get_gathering_name() is None or request.get_gathering_name() == "" else request.get_gathering_name())) + "",
-            service=self.ENDPOINT,
-            module=GetGatheringRequest.Constant.MODULE,
-            function=GetGatheringRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        ))
-
-
 
     def get_gathering_pool(self, request):
         """
         ギャザリングプールを取得します<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_realtime_client.control.GetGatheringPoolRequest.GetGatheringPoolRequest
         :return: 結果
         :rtype: gs2_realtime_client.control.GetGatheringPoolResult.GetGatheringPoolResult
         """
-
         query_strings = {
-
         }
         headers = { 
         }
@@ -282,13 +132,11 @@ class Gs2RealtimeClient(AbstractGs2Client):
         return GetGatheringPoolResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "",
             service=self.ENDPOINT,
-            module=GetGatheringPoolRequest.Constant.MODULE,
-            function=GetGatheringPoolRequest.Constant.FUNCTION,
+            component=GetGatheringPoolRequest.Constant.MODULE,
+            target_function=GetGatheringPoolRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
-
-
 
     def update_gathering_pool(self, request):
         """
@@ -300,23 +148,127 @@ class Gs2RealtimeClient(AbstractGs2Client):
         :rtype: gs2_realtime_client.control.UpdateGatheringPoolResult.UpdateGatheringPoolResult
         """
         body = { 
-            "description": request.get_description(),
         }
-
+        if request.get_description() is not None:
+            body["description"] = request.get_description()
         headers = { 
         }
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_realtime_client.control.UpdateGatheringPoolRequest import UpdateGatheringPoolRequest
-
         from gs2_realtime_client.control.UpdateGatheringPoolResult import UpdateGatheringPoolResult
         return UpdateGatheringPoolResult(self._do_put_request(
             url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "",
             service=self.ENDPOINT,
-            module=UpdateGatheringPoolRequest.Constant.MODULE,
-            function=UpdateGatheringPoolRequest.Constant.FUNCTION,
+            component=UpdateGatheringPoolRequest.Constant.MODULE,
+            target_function=UpdateGatheringPoolRequest.Constant.FUNCTION,
             body=body,
             headers=headers
         ))
 
+    def create_gathering(self, request):
+        """
+        ギャザリングを作成します<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_realtime_client.control.CreateGatheringRequest.CreateGatheringRequest
+        :return: 結果
+        :rtype: gs2_realtime_client.control.CreateGatheringResult.CreateGatheringResult
+        """
+        body = { 
+        }
 
+        if request.get_name() is not None:
+            body["name"] = request.get_name()
+        if request.get_user_ids() is not None:
+            body["userIds"] = request.get_user_ids()
+        headers = { 
+        }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
+        from gs2_realtime_client.control.CreateGatheringRequest import CreateGatheringRequest
+        from gs2_realtime_client.control.CreateGatheringResult import CreateGatheringResult
+        return CreateGatheringResult(self._do_post_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "/gathering",
+            service=self.ENDPOINT,
+            component=CreateGatheringRequest.Constant.MODULE,
+            target_function=CreateGatheringRequest.Constant.FUNCTION,
+            body=body,
+            headers=headers
+        ))
+
+    def delete_gathering(self, request):
+        """
+        ギャザリングを削除します<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_realtime_client.control.DeleteGatheringRequest.DeleteGatheringRequest
+        """
+        query_strings = {}
+        headers = { 
+        }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
+        from gs2_realtime_client.control.DeleteGatheringRequest import DeleteGatheringRequest
+        self._do_delete_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "/gathering/" + str(("null" if request.get_gathering_name() is None or request.get_gathering_name() == "" else request.get_gathering_name())) + "",
+            service=self.ENDPOINT,
+            component=DeleteGatheringRequest.Constant.MODULE,
+            target_function=DeleteGatheringRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        )
+
+    def describe_gathering(self, request):
+        """
+        ギャザリングの一覧を取得します<br>
+        <br>:param request: リクエストパラメータ
+        :type request: gs2_realtime_client.control.DescribeGatheringRequest.DescribeGatheringRequest
+        :return: 結果
+        :rtype: gs2_realtime_client.control.DescribeGatheringResult.DescribeGatheringResult
+        """
+        query_strings = {
+            'pageToken': request.get_page_token(),
+            'limit': request.get_limit(),
+        }
+        headers = { 
+        }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
+        from gs2_realtime_client.control.DescribeGatheringRequest import DescribeGatheringRequest
+
+        from gs2_realtime_client.control.DescribeGatheringResult import DescribeGatheringResult
+        return DescribeGatheringResult(self._do_get_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "/gathering",
+            service=self.ENDPOINT,
+            component=DescribeGatheringRequest.Constant.MODULE,
+            target_function=DescribeGatheringRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        ))
+
+    def get_gathering(self, request):
+        """
+        ギャザリングを取得します<br>
+        <br>:param request: リクエストパラメータ
+        :type request: gs2_realtime_client.control.GetGatheringRequest.GetGatheringRequest
+        :return: 結果
+        :rtype: gs2_realtime_client.control.GetGatheringResult.GetGatheringResult
+        """
+        query_strings = {
+        }
+        headers = { 
+        }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
+        from gs2_realtime_client.control.GetGatheringRequest import GetGatheringRequest
+
+        from gs2_realtime_client.control.GetGatheringResult import GetGatheringResult
+        return GetGatheringResult(self._do_get_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "/gathering/" + str(("null" if request.get_gathering_name() is None or request.get_gathering_name() == "" else request.get_gathering_name())) + "",
+            service=self.ENDPOINT,
+            component=GetGatheringRequest.Constant.MODULE,
+            target_function=GetGatheringRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        ))

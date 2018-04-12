@@ -25,13 +25,12 @@ class GetGatheringResult(object):
         :type response: レスポンスボディ
         :type response: dict
         """
-        
         self.__item = Gathering(response['item']) if 'item' in response.keys() and response['item'] is not None else None
 
     def get_item(self):
         """
-        購読を取得
-        :return: 購読
+        ギャザリングを取得
+        :return: ギャザリング
         :rtype: Gathering
         """
         return self.__item
@@ -42,7 +41,6 @@ class GetGatheringResult(object):
         :return: 辞書配列
         :rtype: dict
         """
-        return { 
+        return {
             'item': self.__item.to_dict(),
-        
         }
