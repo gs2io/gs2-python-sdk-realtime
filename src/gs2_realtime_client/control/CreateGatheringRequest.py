@@ -57,7 +57,7 @@ class CreateGatheringRequest(Gs2BasicRequest):
         :param gathering_pool_name: ギャザリングプールの名前を指定します。
         :type gathering_pool_name: unicode
         """
-        if gathering_pool_name and not isinstance(gathering_pool_name, unicode):
+        if gathering_pool_name and not (isinstance(gathering_pool_name, str) or isinstance(gathering_pool_name, unicode)):
             raise TypeError(type(gathering_pool_name))
         self.__gathering_pool_name = gathering_pool_name
 
@@ -86,7 +86,7 @@ class CreateGatheringRequest(Gs2BasicRequest):
         :param name: ギャザリング名
         :type name: unicode
         """
-        if name and not isinstance(name, unicode):
+        if name and not (isinstance(name, str) or isinstance(name, unicode)):
             raise TypeError(type(name))
         self.__name = name
 
@@ -115,7 +115,7 @@ class CreateGatheringRequest(Gs2BasicRequest):
         :param user_ids: カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
         :type user_ids: unicode
         """
-        if user_ids and not isinstance(user_ids, unicode):
+        if user_ids and not (isinstance(user_ids, str) or isinstance(user_ids, unicode)):
             raise TypeError(type(user_ids))
         self.__user_ids = user_ids
 

@@ -53,7 +53,7 @@ class UpdateGatheringPoolRequest(Gs2BasicRequest):
         :param gathering_pool_name: ギャザリングプールの名前を指定します。
         :type gathering_pool_name: unicode
         """
-        if gathering_pool_name and not isinstance(gathering_pool_name, unicode):
+        if gathering_pool_name and not (isinstance(gathering_pool_name, str) or isinstance(gathering_pool_name, unicode)):
             raise TypeError(type(gathering_pool_name))
         self.__gathering_pool_name = gathering_pool_name
 
@@ -82,7 +82,7 @@ class UpdateGatheringPoolRequest(Gs2BasicRequest):
         :param description: ギャザリングプールの説明
         :type description: unicode
         """
-        if description and not isinstance(description, unicode):
+        if description and not (isinstance(description, str) or isinstance(description, unicode)):
             raise TypeError(type(description))
         self.__description = description
 
