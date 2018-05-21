@@ -16,6 +16,7 @@
 
 from gs2_core_client.Gs2Constant import Gs2Constant
 from gs2_core_client.AbstractGs2Client import AbstractGs2Client
+from aws_sdk_for_serverless.common import url_encoder
 
 
 class Gs2RealtimeClient(AbstractGs2Client):
@@ -76,7 +77,7 @@ class Gs2RealtimeClient(AbstractGs2Client):
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_realtime_client.control.DeleteGatheringPoolRequest import DeleteGatheringPoolRequest
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else url_encoder.encode(request.get_gathering_pool_name()))) + "",
             service=self.ENDPOINT,
             component=DeleteGatheringPoolRequest.Constant.MODULE,
             target_function=DeleteGatheringPoolRequest.Constant.FUNCTION,
@@ -130,7 +131,7 @@ class Gs2RealtimeClient(AbstractGs2Client):
 
         from gs2_realtime_client.control.GetGatheringPoolResult import GetGatheringPoolResult
         return GetGatheringPoolResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else url_encoder.encode(request.get_gathering_pool_name()))) + "",
             service=self.ENDPOINT,
             component=GetGatheringPoolRequest.Constant.MODULE,
             target_function=GetGatheringPoolRequest.Constant.FUNCTION,
@@ -158,7 +159,7 @@ class Gs2RealtimeClient(AbstractGs2Client):
         from gs2_realtime_client.control.UpdateGatheringPoolRequest import UpdateGatheringPoolRequest
         from gs2_realtime_client.control.UpdateGatheringPoolResult import UpdateGatheringPoolResult
         return UpdateGatheringPoolResult(self._do_put_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else url_encoder.encode(request.get_gathering_pool_name()))) + "",
             service=self.ENDPOINT,
             component=UpdateGatheringPoolRequest.Constant.MODULE,
             target_function=UpdateGatheringPoolRequest.Constant.FUNCTION,
@@ -189,7 +190,7 @@ class Gs2RealtimeClient(AbstractGs2Client):
         from gs2_realtime_client.control.CreateGatheringRequest import CreateGatheringRequest
         from gs2_realtime_client.control.CreateGatheringResult import CreateGatheringResult
         return CreateGatheringResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "/gathering",
+            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else url_encoder.encode(request.get_gathering_pool_name()))) + "/gathering",
             service=self.ENDPOINT,
             component=CreateGatheringRequest.Constant.MODULE,
             target_function=CreateGatheringRequest.Constant.FUNCTION,
@@ -211,7 +212,7 @@ class Gs2RealtimeClient(AbstractGs2Client):
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_realtime_client.control.DeleteGatheringRequest import DeleteGatheringRequest
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "/gathering/" + str(("null" if request.get_gathering_name() is None or request.get_gathering_name() == "" else request.get_gathering_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else url_encoder.encode(request.get_gathering_pool_name()))) + "/gathering/" + str(("null" if request.get_gathering_name() is None or request.get_gathering_name() == "" else url_encoder.encode(request.get_gathering_name()))) + "",
             service=self.ENDPOINT,
             component=DeleteGatheringRequest.Constant.MODULE,
             target_function=DeleteGatheringRequest.Constant.FUNCTION,
@@ -239,7 +240,7 @@ class Gs2RealtimeClient(AbstractGs2Client):
 
         from gs2_realtime_client.control.DescribeGatheringResult import DescribeGatheringResult
         return DescribeGatheringResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "/gathering",
+            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else url_encoder.encode(request.get_gathering_pool_name()))) + "/gathering",
             service=self.ENDPOINT,
             component=DescribeGatheringRequest.Constant.MODULE,
             target_function=DescribeGatheringRequest.Constant.FUNCTION,
@@ -265,7 +266,7 @@ class Gs2RealtimeClient(AbstractGs2Client):
 
         from gs2_realtime_client.control.GetGatheringResult import GetGatheringResult
         return GetGatheringResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "/gathering/" + str(("null" if request.get_gathering_name() is None or request.get_gathering_name() == "" else request.get_gathering_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else url_encoder.encode(request.get_gathering_pool_name()))) + "/gathering/" + str(("null" if request.get_gathering_name() is None or request.get_gathering_name() == "" else url_encoder.encode(request.get_gathering_name()))) + "",
             service=self.ENDPOINT,
             component=GetGatheringRequest.Constant.MODULE,
             target_function=GetGatheringRequest.Constant.FUNCTION,
