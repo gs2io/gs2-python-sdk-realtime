@@ -26,7 +26,6 @@ class GetGatheringPoolResult(object):
         :type response: dict
         """
         self.__item = GatheringPool(response['item']) if 'item' in response.keys() and response['item'] is not None else None
-
     def get_item(self):
         """
         ギャザリングプールを取得
@@ -34,6 +33,12 @@ class GetGatheringPoolResult(object):
         :rtype: GatheringPool
         """
         return self.__item
+
+    def __getitem__(self, key):
+        items = self.to_dict()
+        if key in items.keys():
+            return items[key]
+        return super(GetGatheringPoolResult, self).__getitem__(key)
 
     def to_dict(self):
         """
