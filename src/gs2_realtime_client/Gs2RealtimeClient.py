@@ -48,8 +48,7 @@ class Gs2RealtimeClient(AbstractGs2Client):
 
         if request.get_description() is not None:
             body["description"] = request.get_description()
-        headers = { 
-        }
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_realtime_client.control.CreateGatheringPoolRequest import CreateGatheringPoolRequest
@@ -71,13 +70,12 @@ class Gs2RealtimeClient(AbstractGs2Client):
         :type request: gs2_realtime_client.control.DeleteGatheringPoolRequest.DeleteGatheringPoolRequest
         """
         query_strings = {}
-        headers = { 
-        }
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_realtime_client.control.DeleteGatheringPoolRequest import DeleteGatheringPoolRequest
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else url_encoder.encode(request.get_gathering_pool_name()))) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "",
             service=self.ENDPOINT,
             component=DeleteGatheringPoolRequest.Constant.MODULE,
             target_function=DeleteGatheringPoolRequest.Constant.FUNCTION,
@@ -93,12 +91,12 @@ class Gs2RealtimeClient(AbstractGs2Client):
         :return: 結果
         :rtype: gs2_realtime_client.control.DescribeGatheringPoolResult.DescribeGatheringPoolResult
         """
-        query_strings = {
-            'pageToken': request.get_page_token(),
-            'limit': request.get_limit(),
-        }
-        headers = { 
-        }
+        query_strings = {}
+        if request.get_page_token() is not None:
+            query_strings['pageToken'] = request.get_page_token()
+        if request.get_limit() is not None:
+            query_strings['limit'] = request.get_limit()
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_realtime_client.control.DescribeGatheringPoolRequest import DescribeGatheringPoolRequest
@@ -121,17 +119,15 @@ class Gs2RealtimeClient(AbstractGs2Client):
         :return: 結果
         :rtype: gs2_realtime_client.control.GetGatheringPoolResult.GetGatheringPoolResult
         """
-        query_strings = {
-        }
-        headers = { 
-        }
+        query_strings = {}
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_realtime_client.control.GetGatheringPoolRequest import GetGatheringPoolRequest
 
         from gs2_realtime_client.control.GetGatheringPoolResult import GetGatheringPoolResult
         return GetGatheringPoolResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else url_encoder.encode(request.get_gathering_pool_name()))) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "",
             service=self.ENDPOINT,
             component=GetGatheringPoolRequest.Constant.MODULE,
             target_function=GetGatheringPoolRequest.Constant.FUNCTION,
@@ -152,14 +148,13 @@ class Gs2RealtimeClient(AbstractGs2Client):
         }
         if request.get_description() is not None:
             body["description"] = request.get_description()
-        headers = { 
-        }
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_realtime_client.control.UpdateGatheringPoolRequest import UpdateGatheringPoolRequest
         from gs2_realtime_client.control.UpdateGatheringPoolResult import UpdateGatheringPoolResult
         return UpdateGatheringPoolResult(self._do_put_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else url_encoder.encode(request.get_gathering_pool_name()))) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "",
             service=self.ENDPOINT,
             component=UpdateGatheringPoolRequest.Constant.MODULE,
             target_function=UpdateGatheringPoolRequest.Constant.FUNCTION,
@@ -183,14 +178,13 @@ class Gs2RealtimeClient(AbstractGs2Client):
             body["name"] = request.get_name()
         if request.get_user_ids() is not None:
             body["userIds"] = request.get_user_ids()
-        headers = { 
-        }
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_realtime_client.control.CreateGatheringRequest import CreateGatheringRequest
         from gs2_realtime_client.control.CreateGatheringResult import CreateGatheringResult
         return CreateGatheringResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else url_encoder.encode(request.get_gathering_pool_name()))) + "/gathering",
+            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "/gathering",
             service=self.ENDPOINT,
             component=CreateGatheringRequest.Constant.MODULE,
             target_function=CreateGatheringRequest.Constant.FUNCTION,
@@ -206,13 +200,12 @@ class Gs2RealtimeClient(AbstractGs2Client):
         :type request: gs2_realtime_client.control.DeleteGatheringRequest.DeleteGatheringRequest
         """
         query_strings = {}
-        headers = { 
-        }
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_realtime_client.control.DeleteGatheringRequest import DeleteGatheringRequest
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else url_encoder.encode(request.get_gathering_pool_name()))) + "/gathering/" + str(("null" if request.get_gathering_name() is None or request.get_gathering_name() == "" else url_encoder.encode(request.get_gathering_name()))) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "/gathering/" + str(("null" if request.get_gathering_name() is None or request.get_gathering_name() == "" else request.get_gathering_name())) + "",
             service=self.ENDPOINT,
             component=DeleteGatheringRequest.Constant.MODULE,
             target_function=DeleteGatheringRequest.Constant.FUNCTION,
@@ -228,19 +221,19 @@ class Gs2RealtimeClient(AbstractGs2Client):
         :return: 結果
         :rtype: gs2_realtime_client.control.DescribeGatheringResult.DescribeGatheringResult
         """
-        query_strings = {
-            'pageToken': request.get_page_token(),
-            'limit': request.get_limit(),
-        }
-        headers = { 
-        }
+        query_strings = {}
+        if request.get_page_token() is not None:
+            query_strings['pageToken'] = request.get_page_token()
+        if request.get_limit() is not None:
+            query_strings['limit'] = request.get_limit()
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_realtime_client.control.DescribeGatheringRequest import DescribeGatheringRequest
 
         from gs2_realtime_client.control.DescribeGatheringResult import DescribeGatheringResult
         return DescribeGatheringResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else url_encoder.encode(request.get_gathering_pool_name()))) + "/gathering",
+            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "/gathering",
             service=self.ENDPOINT,
             component=DescribeGatheringRequest.Constant.MODULE,
             target_function=DescribeGatheringRequest.Constant.FUNCTION,
@@ -256,17 +249,15 @@ class Gs2RealtimeClient(AbstractGs2Client):
         :return: 結果
         :rtype: gs2_realtime_client.control.GetGatheringResult.GetGatheringResult
         """
-        query_strings = {
-        }
-        headers = { 
-        }
+        query_strings = {}
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_realtime_client.control.GetGatheringRequest import GetGatheringRequest
 
         from gs2_realtime_client.control.GetGatheringResult import GetGatheringResult
         return GetGatheringResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else url_encoder.encode(request.get_gathering_pool_name()))) + "/gathering/" + str(("null" if request.get_gathering_name() is None or request.get_gathering_name() == "" else url_encoder.encode(request.get_gathering_name()))) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + str(("null" if request.get_gathering_pool_name() is None or request.get_gathering_pool_name() == "" else request.get_gathering_pool_name())) + "/gathering/" + str(("null" if request.get_gathering_name() is None or request.get_gathering_name() == "" else request.get_gathering_name())) + "",
             service=self.ENDPOINT,
             component=GetGatheringRequest.Constant.MODULE,
             target_function=GetGatheringRequest.Constant.FUNCTION,
