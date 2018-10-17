@@ -103,27 +103,27 @@ class CreateGatheringRequest(Gs2BasicRequest):
 
     def get_user_ids(self):
         """
-        カンマ区切りのギャザリングへの参加を許可するユーザIDリストを取得
-        :return: カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
-        :rtype: unicode
+        ギャザリングへの参加を許可するユーザIDリストを取得
+        :return: ギャザリングへの参加を許可するユーザIDリスト
+        :rtype: list[unicode]
         """
         return self.__user_ids
 
     def set_user_ids(self, user_ids):
         """
-        カンマ区切りのギャザリングへの参加を許可するユーザIDリストを設定
-        :param user_ids: カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
-        :type user_ids: unicode
+        ギャザリングへの参加を許可するユーザIDリストを設定
+        :param user_ids: ギャザリングへの参加を許可するユーザIDリスト
+        :type user_ids: list[unicode]
         """
-        if user_ids is not None and not (isinstance(user_ids, str) or isinstance(user_ids, unicode)):
+        if user_ids is not None and not isinstance(user_ids, list):
             raise TypeError(type(user_ids))
         self.__user_ids = user_ids
 
     def with_user_ids(self, user_ids):
         """
-        カンマ区切りのギャザリングへの参加を許可するユーザIDリストを設定
-        :param user_ids: カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
-        :type user_ids: unicode
+        ギャザリングへの参加を許可するユーザIDリストを設定
+        :param user_ids: ギャザリングへの参加を許可するユーザIDリスト
+        :type user_ids: list[unicode]
         :return: this
         :rtype: CreateGatheringRequest
         """
